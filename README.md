@@ -51,8 +51,8 @@ Prerequisites
 
 Steps to Run Locally
 1. Clone the repository
-   git clone https://github.com/jyoti786J/To-Do-Gp62-S381F.git
-   cd To-Do-Gp62-S381F
+   git clone https://github.com/jyoti786J/Social-Task-Manager.git
+   cd Social-Task-Manager
 3. Install dependencies
    npm install
 5. Configure environment variables
@@ -67,7 +67,7 @@ Steps to Run Locally
    Main app: http://localhost:8099
    Login page: http://localhost:8099/login
 
-- To-Do-Gp62-S381F/
+- Social-Task-Manager/
 - ├── server.js              # Main application file
 - ├── package.json           # Dependencies and scripts
 - ├── views/                 # EJS templates
