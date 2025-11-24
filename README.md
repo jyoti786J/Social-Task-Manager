@@ -1,139 +1,104 @@
-Here’s a structured of To-Do application. This document outlines the application features, authentication, CRUD operations, and RESTful API usage.
+📝 Social To-Do List Application
+A full-stack web application that allows users to manage their tasks with Facebook authentication, file uploads, and a complete RESTful API.
 
----
+🎯 Overview
+This is a collaborative To-Do list application where users can:
+- Log in securely using their Facebook account
+- Create, read, update, and delete tasks
+- Upload files attached to tasks
+- Access tasks via a RESTful API
 
-# To-Do Application
+✨ Features
+🔐 Authentication
+- Facebook OAuth Login - Secure social authentication
+- Session Management - Persistent user sessions
+- Auto-login - Remembered login state
 
-**Members:**  
-- 13283475 Kaur Sandeep
-- 13384981 Chu Cheuk Sang
-- 13226493 Yau Wa Kin 
-- 13345250 Ng Tsz Kin
-- 12531103 LIN JUNSHAN
+📋 Task Management
+- Create Tasks - Add new tasks with names, due dates, and file attachments
+- View Tasks - Clean list view of all user tasks
+- Edit Tasks - Modify existing task details
+- Delete Tasks - Remove tasks with confirmation
+- File Uploads - Attach files to tasks (stored as base64 in MongoDB)
 
-**Application Link:**  
-- [To-Do App](http://localhost:8099)
+🔗 RESTful API
+- POST /api/record - Create new tasks
+- GET /api/record - Retrieve all user tasks
+- PUT /api/record - Update tasks
+- DELETE /api/record/:task - Delete specific tasks
 
-********************************************
+🛠️ Technology Stack
+Backend:
+- Node.js & Express.js
+- MongoDB with Mongoose
+- Passport.js for Facebook OAuth
+- Express-formidable for file handling
+- EJS templating engine
 
-## Login
+Frontend:
+- EJS templates
+- HTML5 & CSS3
+- Session-based authentication
 
-Through the login interface, each user can access the To-Do application by entering their Facebook credentials.
+Deployment:
+- Render (as indicated by callback URL)
 
-Each user is authenticated via Facebook, which provides a user ID and basic profile information.
+🚀 Installation & Setup
+Prerequisites
+- Node.js
+- MongoDB Atlas account
+- Facebook Developer account
 
-After successful login, the user ID is stored in the session.
+Steps to Run Locally
+1. Clone the repository
+   git clone https://github.com/jyoti786J/To-Do-Gp62-S381F.git
+   cd To-Do-Gp62-S381F
+3. Install dependencies
+   npm install
+5. Configure environment variables
+   Create a .env file with:
+   MONGODB_URI=your_mongodb_connection_string
+  FACEBOOK_APP_ID=your_facebook_app_id
+  FACEBOOK_APP_SECRET=your_facebook_app_secret
+  SESSION_SECRET=your_session_secret
+7. Run the application
+   npm start
+9. Access the application
+   Main app: http://localhost:8099
+   Login page: http://localhost:8099/login
 
-********************************************
+- To-Do-Gp62-S381F/
+- ├── server.js              # Main application file
+- ├── package.json           # Dependencies and scripts
+- ├── views/                 # EJS templates
+- │   ├── create.ejs        # Task creation form
+- │   ├── list.ejs          # Tasks listing page
+- │   ├── edit.ejs          # Task editing form
+- │   ├── details.ejs       # Task details view
+- │   ├── info.ejs          # Information/status messages
+- │   └── login.ejs         # Login page
+- └── (other configuration files)
 
-## Logout
+🔧 API Usage Examples
 
-Users can log out of their accounts by clicking the logout button on the home page.
-
-********************************************
-
-## CRUD Service
-
-### Create
-
-- A task document may contain the following attributes with an example:
-  1. **Task Name** (Buy groceries)
-  2. **Task ID** (Auto-generated)
-  3. **User ID** (122098074998635674)
-  4. **Due Date** (2023-12-01)
-
-POST Request: Used for creating tasks with information sent in the request body.
-
-
-********************************************
-## Task Attributes
-
-A task document in this application may contain the following attributes:
-
-1. **Task Name**: Represents the name or description of the task.
-2. **Due Date**: Indicates the deadline by which the task should be completed.
-
-
-### Read
-
- **List All Tasks**: 
-  - Task Listing: The list.ejs page displays all tasks associated with the logged-in user. Tasks are presented in a clean and organized manner, showing the task name and due date.
-  - Task Details: Users can click on a task to view its details, providing more information about the task.
-  - Task Editing: Users have the option to edit tasks by clicking on the edit icon (🖋️) next to each task. This functionality allows users to make changes to task details.
-  - Task Deletion: Tasks can be deleted by clicking on the "Delete" link associated with each task. A confirmation prompt ensures that the user intends to delete the task.
-  - Task Creation: Users can easily add new tasks by clicking the "Add a New Task" link, which directs them to the task creation page.
-  - User Authentication: The application supports user authentication, displaying the user's name and type upon login.
-
-********************************************
-
-### Update
-
-Users can update their tasks by following these steps:
-
-1. Navigate to the details interface for the task you want to update.
-2. Edit the task name and due date as needed.
-3. Save the changes by clicking the "Update" button.
-- A task document may contain the following attributes with an example:
-  1. **Task Name** (Submit report)
-  2. **Due Date** (2023-12-05)
-
-In this example, we updated the task name and due date.
-
-********************************************
-
-### Delete
-
-Users can delete tasks by following these steps:
-
-1. Navigate to the task you want to delete.
-2. Click on the "Delete" link associated with the task.
-3. Confirm the deletion when prompted.
-
-********************************************
-
-## RESTful API
-
-In this project, there are 4 HTTP request types: GET, POST, PUT, DELETE.
-
-### POST
-
-The POST request is used to insert a new task record.  
-**Path URL:** `/api/tasks`  
-**Test:** 
-```bash
+Create a Task
 curl -X POST http://localhost:8099/api/record \
   -H "Content-Type: application/json" \
-  -d '{"task": "Your Task Name", "date": "Task Date"}'
-```
+  -d '{"task": "Buy groceries", "date": "2024-12-01"}'
 
-### GET
-
-The GET request is used to retrieve task information.  
-**Path URL:** `/api/tasks/:taskID`  
-**Test:**
-```bash
+Get All Tasks
 curl http://localhost:8099/api/record
-```
 
-
-### PUT
-
-The PUT request is used to update task information.  
-**Path URL:** `/api/tasks/:taskID`  
-**Test:**
-```bash
+Update Tasks
 curl -X PUT http://localhost:8099/api/record \
   -H "Content-Type: application/json" \
-  -d '{"task": "Updated Task Name", "date": "Updated Task Date"}'
-```
+  -d '{"task": "Updated task", "date": "2024-12-05"}'
 
-### DELETE
-
-The DELETE request is used to delete a task record.  
-**Path URL:** `/api/tasks/:taskID`  
-**Test:**
-```bash
+Delete a Task
 curl -X DELETE http://localhost:8099/api/record/TaskNameToDelete
-```
 
-
+🔒 Security Features
+- Facebook OAuth 2.0 - Secure third-party authentication
+- Session-based authentication - Server-side session management
+- User isolation - Users can only access their own tasks
+- Input validation - Form data validation and sanitization
