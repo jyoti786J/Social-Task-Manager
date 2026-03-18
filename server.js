@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const { Console } = require('console');
 
 
-const mongourl = 'mongodb+srv://sandy:Funnylol786@cluster0.xebyb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const mongourl = 'mongodb+srv://sandy:aoNUX4HpR5yaZHKV@cluster0.xebyb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const dbName = 'myproject';
 const collectionName = 'to-do';
 
@@ -41,7 +41,7 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
   clientID: '863157422347410', 
   clientSecret: 'ac63afea03bf956c73eb8fb8c6eac747', 
-  callbackURL: 'https://to-do-gp62-s381f.onrender.com/auth/facebook/callback'
+  callbackURL: 'https://social-task-manager.onrender.com/auth/facebook/callback'
 }, async (accessToken, refreshToken, profile, done) => {
   console.log("Facebook Profile: "+JSON.stringify(profile));
   console.log(profile);
@@ -312,7 +312,7 @@ app.post('/api/record', async (req, res) => {
   /*Restful*/
   
   
-  app.get('*', (req, res) => {
+  app.get((req, res) => {
     res.status(404).render('info', { message: `${req.path} - Unknown request!` });
   });
   
