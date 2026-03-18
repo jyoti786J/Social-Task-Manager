@@ -41,7 +41,7 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
   clientID: '863157422347410', 
   clientSecret: 'ac63afea03bf956c73eb8fb8c6eac747', 
-  callbackURL: 'https://social-task-manager.onrender.com/auth/facebook/callback'
+  callbackURL: 'https://localhost:8099/auth/facebook/callback'
 }, async (accessToken, refreshToken, profile, done) => {
   console.log("Facebook Profile: "+JSON.stringify(profile));
   console.log(profile);
